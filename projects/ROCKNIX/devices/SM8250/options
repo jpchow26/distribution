@@ -36,7 +36,7 @@
     EXTRA_CMDLINE="quiet rootwait console=tty0"
 
   # Bootloader to use (syslinux / u-boot)
-    BOOTLOADER="arm-efi"
+    BOOTLOADER="qcom-abl"
 
   # Adreno GPU family
     GRAPHIC_DRIVERS="freedreno"
@@ -75,3 +75,12 @@
 
   # Build and install ROCKNIX joypad driver (yes / no)
     ROCKNIX_JOYPAD="no"
+
+  # ZRAM Algorithm
+    ZRAM_COMPRESSION_ALGO="zstd"
+
+  # ZRAM Size
+    ZRAM_SWAP_SIZE="Auto"
+
+  # Disk Swap
+    SWAP_FILE_SIZE="0"

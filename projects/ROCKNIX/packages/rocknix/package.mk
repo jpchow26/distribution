@@ -42,6 +42,9 @@ makeinstall_target() {
 Passphrase=${LOCAL_WIFI_KEY}
 EOF
   fi
+  # Always install the update script
+  mkdir -p $INSTALL/usr/share/bootloader
+  find_file_path bootloader/update.sh && cp -av ${FOUND_PATH} ${INSTALL}/usr/share/bootloader
 }
 
 post_install() {
@@ -68,6 +71,9 @@ EOF
 
   ### Fix and migrate to autostart package
   enable_service rocknix-autostart.service
+  
+  ### ZRAM/Swap and Memory Manager Service
+  enable_service rocknix-memory-manager.service
 
   ### Take a backup of the system configuration on shutdown
   enable_service save-sysconfig.service

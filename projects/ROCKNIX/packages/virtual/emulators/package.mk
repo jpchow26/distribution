@@ -21,10 +21,10 @@ LIBRETRO_CORES="81-lr a5200-lr arduous-lr atari800-lr b2-lr beetle-gba-lr beetle
                 gearboy-lr gearcoleco-lr gearsystem-lr genesis-plus-gx-lr genesis-plus-gx-wide-lr gw-lr handy-lr hatari-lr idtech-lr \
                 jaxe-lr mame-lr mame2003-plus-lr mame2010-lr mame2015-lr melonds-lr melonds-ds-lr mesen-lr mgba-lr minivmac-lr       \
                 mojozork-lr mu-lr mupen64plus-lr mupen64plus-nx-lr neocd_lr nestopia-lr np2kai-lr o2em-lr opera-lr parallel-n64-lr   \
-                pcsx_rearmed-lr picodrive-lr pokemini-lr potator-lr prosystem-lr puae-lr puae2021-lr px68k-lr quasi88-lr quicknes-lr \
-                race-lr same_cdi-lr sameboy-lr sameduck-lr scummvm-lr smsplus-gx-lr snes9x-lr snes9x2002-lr snes9x2005_plus-lr       \
-                snes9x2010-lr stella-lr swanstation-lr tgbdual-lr theodore-lr tic80-lr uzem-lr vba-next-lr vbam-lr vecx-lr vice-lr   \
-                vircon32-lr virtualjaguar-lr xmil-lr wasm4-lr yabasanshiro-lr"
+                pcsx_rearmed-lr picodrive-lr pokemini-lr potator-lr ppsspp-lr prosystem-lr puae-lr puae2021-lr px68k-lr quasi88-lr   \
+                quicknes-lr race-lr same_cdi-lr sameboy-lr sameduck-lr scummvm-lr smsplus-gx-lr snes9x-lr snes9x2002-lr              \
+                snes9x2005_plus-lr snes9x2010-lr stella-lr swanstation-lr tgbdual-lr theodore-lr tic80-lr uzem-lr vba-next-lr        \
+                vbam-lr vecx-lr vice-lr vircon32-lr virtualjaguar-lr xmil-lr wasm4-lr yabasanshiro-lr"
 
 ### Emulators or cores for specific devices
 case "${DEVICE}" in
@@ -574,18 +574,34 @@ makeinstall_target() {
       ;;
   esac
 
-  ### Nintendo Wii
+  ### Nintendo Triforce
+  case ${DEVICE} in
+    RK3399|SDM845|SM8250|SM8550|SM8650)
+      add_emu_core triforce dolphin dolphin-qt-gc true
+      install_script "Start Dolphin.sh"
+      add_es_system triforce
+      ;;
+  esac
+
+  ### Nintendo Wii/ware
   case ${DEVICE} in
     RK3399|SDM845|SM8250|SM8550|SM8650)
       add_emu_core wii dolphin dolphin-qt-wii true
+      add_emu_core wiiware dolphin dolphin-qt-wii true
       add_emu_core wii dolphin dolphin-sa-wii false
+      add_emu_core wiiware dolphin dolphin-sa-wii false
       add_emu_core wii retroarch dolphin false
+      add_emu_core wiiware retroarch dolphin false
       add_es_system wii
+      add_es_system wiiware
       ;;
     RK3566|RK3588|S922X)
       add_emu_core wii dolphin dolphin-sa-wii true
+      add_emu_core wiiware dolphin dolphin-sa-wii true
       add_emu_core wii retroarch dolphin false
+      add_emu_core wiiware retroarch dolphin false
       add_es_system wii
+      add_es_system wiiware
       ;;
   esac
 
@@ -829,6 +845,18 @@ makeinstall_target() {
   esac
   add_es_system nds
 
+  ### Nintendo DSiWare
+  case ${DEVICE} in
+    H700|RK3326)
+      add_emu_core ndsiware retroarch melondsds true
+    ;;
+    *)
+      add_emu_core ndsiware retroarch melondsds true
+      add_emu_core ndsiware melonds melonds-sa false
+    ;;
+  esac
+  add_es_system ndsiware
+
   ### Nintendo NES
   add_emu_core nes retroarch nestopia true
   add_emu_core nes retroarch fceumm false
@@ -963,6 +991,7 @@ makeinstall_target() {
 
   ### Sony Playstation Portable
   add_emu_core psp ppsspp ppsspp-sa true
+  add_emu_core psp retroarch ppsspp false
   add_es_system psp
   install_script "Start PPSSPP.sh"
 

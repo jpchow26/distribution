@@ -48,6 +48,12 @@
   # For maximum cross compatbility
     PREFER_GLES="yes"
 
+  # VULKAN_SUPPORT
+    VULKAN_SUPPORT="yes"
+
+  # Vulkan implementation to use (vulkan-loader / no)
+    VULKAN="vulkan-loader"
+
   # Displayserver to use (wl / no)
     DISPLAYSERVER="wl"
 
@@ -69,7 +75,7 @@
     FIRMWARE=""
 
   # Additional packages to install
-    ADDITIONAL_PACKAGES="libmali"
+    ADDITIONAL_PACKAGES="libmali libmali-vulkan"
     ADDITIONAL_PACKAGES_32BIT="libmali"
 
   # Debug tty path
@@ -77,3 +83,12 @@
 
   # Build and install rocknix out-of-tree device trees and overlays (yes / no)
     ROCKNIX_DEVICE_TREE_OVERLAYS="yes"
+
+  # ZRAM Algorithm
+    ZRAM_COMPRESSION_ALGO="lzo-rle"
+
+  # ZRAM Size
+    ZRAM_SWAP_SIZE="0"
+
+  # Disk Swap
+    SWAP_FILE_SIZE="0"

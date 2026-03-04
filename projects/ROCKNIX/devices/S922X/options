@@ -42,7 +42,7 @@
     UBOOT_FIRMWARE="amlogic-boot-fip"
 
   # Mali GPU family
-    MALI_FAMILY="bifrost-g52"
+    MALI_FAMILY="meson"
     GRAPHIC_DRIVERS="panfrost"
 
   # For maximum cross compatbility
@@ -58,7 +58,7 @@
     DISPLAYSERVER="wl"
 
   # Windowmanager to use (weston / swaywm-env / no)
-    WINDOWMANAGER="weston"
+    WINDOWMANAGER="swaywm-env"
   
   # Additional drivers to install:
   # for a list of additional drivers see packages/linux-drivers
@@ -72,7 +72,7 @@
     FIRMWARE=""
 
   # Additional packages to install
-    ADDITIONAL_PACKAGES="weston-kiosk-shell-dpms libmali"
+    ADDITIONAL_PACKAGES="libmali"
 
   # Debug tty path
     DEBUG_TTY="/dev/ttyAML0"
@@ -80,8 +80,11 @@
   # Build and install rocknix out-of-tree device trees and overlays (yes / no)
     ROCKNIX_DEVICE_TREE_OVERLAYS="yes"
 
-  # Swap size if SWAP_SUPPORT=yes in MB
-    SWAPSIZE="512"
+  # ZRAM Algorithm
+    ZRAM_COMPRESSION_ALGO="zstd"
 
-  # Swap type if SWAP_SUPPORT=yes (file / zram)
-    SWAP_TYPE="zram"
+  # ZRAM Size
+    ZRAM_SWAP_SIZE="Auto"
+
+  # Disk Swap
+    SWAP_FILE_SIZE="0"
