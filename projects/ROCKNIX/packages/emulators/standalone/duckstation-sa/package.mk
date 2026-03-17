@@ -14,7 +14,7 @@ case ${TARGET_ARCH} in
     PKG_URL="${PKG_SITE}/releases/download/v${PKG_VERSION}/DuckStation-x64.AppImage"
   ;;
   aarch64)
-    PKG_URL="${PKG_SITE}/releases/download/v${PKG_VERSION}/DuckStation-Mini-arm64.AppImage"
+    PKG_URL="${PKG_SITE}/releases/download/v${PKG_VERSION}/DuckStation-arm64.AppImage"
   ;;
 esac
 
